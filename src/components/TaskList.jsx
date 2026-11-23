@@ -21,12 +21,14 @@ function TaskList({
           type="text"
           className="search-input"
           placeholder="Cari kegiatan..."
+          aria-label="Cari kegiatan berdasarkan nama"
           value={searchTerm}
           onChange={(event) => onSearchChange(event.target.value)}
         />
 
         <select
           className="filter-select"
+          aria-label="Filter kegiatan berdasarkan status"
           value={filterStatus}
           onChange={(event) => onFilterChange(event.target.value)}
         >
@@ -76,6 +78,7 @@ function TaskList({
               <div className="task-actions">
                 <button
                   className="btn-toggle"
+                  aria-label={`${task.completed ? "Batalkan penyelesaian" : "Selesaikan"} kegiatan ${task.title}`}
                   onClick={() => onToggleTask(task.id)}
                 >
                   {task.completed ? "Batalkan" : "Selesaikan"}
@@ -83,6 +86,7 @@ function TaskList({
 
                 <button
                   className="btn-delete"
+                  aria-label={`Hapus kegiatan ${task.title}`}
                   onClick={() => onDeleteTask(task.id)}
                 >
                   Hapus
