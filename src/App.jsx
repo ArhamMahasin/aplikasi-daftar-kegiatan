@@ -12,9 +12,28 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("Semua");
+  const [editingTask, setEditingTask] = useState(null);
 
   function handleAddTask(newTask) {
     setTasks((previousTasks) => [...previousTasks, newTask]);
+  }
+
+  function handleUpdateTask(updatedTask) {
+    setTasks((previousTasks) =>
+      previousTasks.map((task) =>
+        task.id === updatedTask.id ? updatedTask : task,
+      ),
+    );
+
+    setEditingTask(null);
+  }
+
+  function handleEditTask(task) {
+    setEditingTask(task);
+  }
+
+  function handleCancelEdit() {
+    setEditingTask(null);
   }
 
   function handleToggleTask(id) {
@@ -27,6 +46,10 @@ function App() {
 
   function handleDeleteTask(id) {
     setTasks((previousTasks) => previousTasks.filter((task) => task.id !== id));
+
+    if (editingTask?.id === id) {
+      setEditingTask(null);
+    }
   }
 
   const totalTasks = tasks.length;
@@ -61,12 +84,18 @@ function App() {
           completed={completedTasks}
         />
 
-        <TaskForm onAddTask={handleAddTask} />
+        <TaskForm
+          onAddTask={handleAddTask}
+          editingTask={editingTask}
+          onUpdateTask={handleUpdateTask}
+          onCancelEdit={handleCancelEdit}
+        />
 
         <TaskList
           tasks={filteredTasks}
           onToggleTask={handleToggleTask}
           onDeleteTask={handleDeleteTask}
+          onEditTask={handleEditTask}
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
           filterStatus={filterStatus}

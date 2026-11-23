@@ -2,6 +2,7 @@ function TaskList({
   tasks,
   onToggleTask,
   onDeleteTask,
+  onEditTask,
   searchTerm,
   onSearchChange,
   filterStatus,
@@ -82,6 +83,14 @@ function TaskList({
                   onClick={() => onToggleTask(task.id)}
                 >
                   {task.completed ? "Batalkan" : "Selesaikan"}
+                </button>
+
+                <button
+                  className="btn-edit"
+                  aria-label={`Edit kegiatan ${task.title}`}
+                  onClick={() => onEditTask(task)}
+                >
+                  Edit
                 </button>
 
                 <button

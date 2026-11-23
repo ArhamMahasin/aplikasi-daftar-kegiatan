@@ -225,20 +225,41 @@
   box-shadow: 0 0 0 3px rgba(102, 88, 232, 0.08);
 }
 
-.btn-add {
+/* FORM ACTIONS */
+.form-actions {
   grid-column: span 2;
+  display: flex;
+  gap: 12px;
+}
+
+.btn-add,
+.btn-cancel {
   border: none;
-  background: #6658e8;
-  color: white;
-  padding: 14px;
+  padding: 14px 20px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 700;
   transition: 0.2s;
+  cursor: pointer;
+}
+
+.btn-add {
+  flex: 1;
+  background: #6658e8;
+  color: white;
 }
 
 .btn-add:hover {
   background: #5545d3;
+}
+
+.btn-cancel {
+  background: #f0f1f6;
+  color: #666b80;
+}
+
+.btn-cancel:hover {
+  background: #e2e4ed;
 }
 
 /* TASK LIST */
@@ -310,6 +331,7 @@
   color: #24a36b;
 }
 
+/* TASK ACTIONS */
 .task-actions {
   display: flex;
   gap: 10px;
@@ -317,6 +339,7 @@
 }
 
 .btn-toggle,
+.btn-edit,
 .btn-delete {
   border: none;
   padding: 10px 13px;
@@ -324,6 +347,7 @@
   font-size: 12px;
   font-weight: 600;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .btn-toggle {
@@ -333,6 +357,15 @@
 
 .btn-toggle:hover {
   background: #dcd6ff;
+}
+
+.btn-edit {
+  background: #e5f2ff;
+  color: #2875c7;
+}
+
+.btn-edit:hover {
+  background: #d2e8ff;
 }
 
 .btn-delete {
@@ -422,7 +455,7 @@
     grid-template-columns: 1fr;
   }
 
-  .btn-add {
+  .form-actions {
     grid-column: span 1;
   }
 
@@ -438,6 +471,7 @@
 
   .task-actions {
     width: 100%;
+    flex-wrap: wrap;
   }
 
   .task-actions button {
@@ -462,6 +496,18 @@
   .task-form-section,
   .task-list-section {
     padding: 17px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .task-actions {
+    flex-direction: column;
+  }
+
+  .task-actions button {
+    width: 100%;
   }
 }
 
